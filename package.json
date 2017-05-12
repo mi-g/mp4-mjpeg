@@ -1,0 +1,31 @@
+{
+	"name": "mp4-mjpeg",
+	"version": "0.0.1",
+	"description": "Generate MP4 video file from JPEG images",
+	"keywords": [
+		"video",
+		"mp4",
+		"mjpeg",
+		"javascript"
+	],
+	"homepage": "https://github.com/mi-g/mp4-mjpeg",
+	"author": {
+		"name": "Michel Gutierrez",
+		"email": "mig@jocly.com",
+		"url": "https://github.com/mi-g"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/mi-g/mp4-mjpeg"
+	},
+	"license": "MIT",
+	"dependencies": {
+		"image-size": "^0.5.3"
+	},
+	"devDependencies": {
+			"jshint": "^2.9.4"
+	},
+	"scripts": {
+			"jshint": "node_modules/jshint/bin/jshint *.js || true"
+	}
+}
