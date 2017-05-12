@@ -394,17 +394,12 @@ class MP4 {
 		if (self.options.reuseLastFrame || self.options.ignoreIdenticalFrames) {
 			var hash = crypto.createHash("RSA-MD4").update(data).digest("base64");
 			if (esi.lastHash == hash && esi.lastFrameLength == data.length) {
-				console.info("identical", "reused count", self.reusedCount, "identicalFrames", esi.identicalFrames, typeof esi.identicalFrames, "options", self.options.ignoreIdenticalFrames, typeof self.options.ignoreIdenticalFrames);
 				if (self.options.ignoreIdenticalFrames) {
 					esi.identicalFrames++;
-					if (esi.identicalFrames >= self.options.ignoreIdenticalFrames) {
-						self.ignoredIdenticalFrames = (self.ignoredIdenticalFrames || 0) + 1;
-						console.info("ignore", esi.identicalFrames, self.ignoredIdenticalFrames);
+					if (esi.identicalFrames >= self.options.ignoreIdenticalFrames)
 						return Promise.resolve();
-					}
 				}
 				reused = true;
-				self.reusedCount = (self.reusedCount || 0) + 1;
 				esi.dataOffsets.push(esi.lastFrameOffset);
 			} else {
 				esi.identicalFrames = 0;
@@ -504,7 +499,6 @@ class MP4 {
 						finalizeError = err;
 					})
 					.then(() => {
-						console.info("Reused", self.reusedCount, "Ignored identical", self.ignoredIdenticalFrames);
 						self.Destroy()
 							.then(() => {
 								if (finalizeError)
