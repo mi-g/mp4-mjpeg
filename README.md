@@ -36,7 +36,7 @@ mjpeg({ fileName: "path/to/my/file.mp4" })
 			})
 			.catch( (error) {
 				// too bad
-			});
+			})
 
 	})
 	.catch( (error) => {
@@ -51,6 +51,7 @@ API
   * `fileName`: the path to the output MP4 video file
   * `reuseLastFrame`: if an image is the same as the previous one, it does not take more data in the MP4 file (default `true`)
   * `ignoreIdenticalFrames`: if not `0` and the number of successive identical images has reached the parameter value, recording is put on hold until a different image is appended to the video (default '30`, 1 second)
+
 The module function returns a [Promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise), not the actual recorder. To get the recorder:
 ````javascript
 	(require('mp4-mpjpeg'))(options)
@@ -58,11 +59,12 @@ The module function returns a [Promise](https://developer.mozilla.org/en/docs/We
 			// the recorder can now be used to add images to the video
 		});
 ````
-- `<recorder>.appendImageDataUrl(dataUrl)`: add an image to the video. This image is encoded in *base64* prefixed with `data:image/png;base64, `, as what you get calling `canvas.toDataURL('image/jpeg')`
+- `<recorder>.appendImageDataUrl(dataUrl)`: add an image to the video. This image is encoded in *base64* prefixed with `data:image/png;base64, `, as what you get calling `canvas.toDataURL('image/jpeg')`<br/>The function returns a promise that is fulfilled when the image has been written
+
+- `<recorder>.appendImageBuffer(buffer)`: add an image to the video. The image is a plain buffer that you can obtain by reading a JPEG file<br/>
 The function returns a promise that is fulfilled when the image has been written
-- `<recorder>.appendImageBuffer(buffer)`: add an image to the video. The image is a plain buffer that you can obtain by reading a JPEG file
-The function returns a promise that is fulfilled when the image has been written
-- `<recorder>.finalize()`: end the capturing process.
+
+- `<recorder>.finalize()`: end the capturing process.<br/>
 The function returns a promise that is fulfilled when the video file is ready to be played
 
 Limitations
