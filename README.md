@@ -28,8 +28,8 @@ mjpeg({ fileName: "path/to/my/file.mp4" })
 		recorder.appendImageBuffer( imageBuffer )
 		// ...
 
-		// all the images added ?
-		// let finalize the MP4 file to make it playable
+		// all images added ?
+		// let's finalize the MP4 file to make it playable
 		recorder.finalize()
 			.then( () => {
 				// MP4 video file is ready
@@ -59,12 +59,12 @@ The module function returns a [Promise](https://developer.mozilla.org/en/docs/We
 			// the recorder can now be used to add images to the video
 		});
 ````
-- `<recorder>.appendImageDataUrl(dataUrl)`: add an image to the video. This image is encoded in *base64* prefixed with `data:image/png;base64, `, as what you get when calling `canvas.toDataURL('image/jpeg')`<br/>The function returns a promise that is fulfilled when the image has been written
+- `<recorder>.appendImageDataUrl(dataUrl)`: adds an image to the video. This image is encoded in *base64* prefixed with `data:image/png;base64, `, as what you get when calling `canvas.toDataURL('image/jpeg')`<br/>The function returns a promise that is fulfilled when the image has been written
 
-- `<recorder>.appendImageBuffer(buffer)`: add an image to the video. The image is a plain buffer that you can obtain by reading a JPEG file<br/>
+- `<recorder>.appendImageBuffer(buffer)`: adds an image to the video. The image is a plain buffer you can obtain by reading a JPEG file<br/>
 The function returns a promise that is fulfilled when the image has been written
 
-- `<recorder>.finalize()`: end the capturing process.<br/>
+- `<recorder>.finalize()`: ends the capturing process.<br/>
 The function returns a promise that is fulfilled when the video file is ready to be played
 
 Limitations
